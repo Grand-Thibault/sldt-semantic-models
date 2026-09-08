@@ -10,29 +10,24 @@
 @prefix : <urn:samm:io.catenax.industry_core.material:1.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
-:max a samm:Property ;
-   samm:preferredName "max"@en ;
-   samm:description "Maximum value of the content"@en ;
-   samm:characteristic :PercentTrait ;
-   samm:exampleValue "35.6"^^xsd:float .
+:certificateId a samm:Property ;
+   samm:preferredName "certificate identifier"@en ;
+   samm:description "IMDS certificate identifier"@en ;
+   samm:characteristic :CertificateIdTrait ;
+   samm:exampleValue "123" .
 
-:PercentTrait a samm-c:Trait ;
-   samm:preferredName "PercentTrait"@en ;
-   samm-c:baseCharacteristic :FloatPercent ;
-   samm-c:constraint :PercentConstraint .
+:CertificateIdTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CodeCharacteristic ;
+   samm-c:constraint :ThreeDigitRegex .
 
-:FloatPercent a samm-c:Quantifiable ;
-   samm:preferredName "float percent"@en ;
-   samm:description "float percent"@en ;
-   samm:dataType xsd:float ;
-   samm-c:unit samm-u:percent .
+:CodeCharacteristic a samm-c:Code ;
+   samm:preferredName "CodeCharacteristic"@en ;
+   samm:description "CodeCharacteristic"@en ;
+   samm:dataType xsd:string .
 
-:PercentConstraint a samm-c:RangeConstraint ;
-   samm:preferredName "PercentConstraint"@en ;
-   samm-c:minValue "0"^^xsd:float ;
-   samm-c:maxValue "100"^^xsd:float ;
-   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
-   samm-c:upperBoundDefinition samm-c:AT_MOST .
+:ThreeDigitRegex a samm-c:RegularExpressionConstraint ;
+   samm:preferredName "three digit regex"@en ;
+   samm:value "^\\d{3}$" .
 
 :RangeMassSingleEntity a samm-c:SingleEntity ;
    samm:preferredName "RangeMassSingleEntity"@en ;
@@ -44,10 +39,21 @@
    samm:description "RangeSingleEntity"@en ;
    samm:dataType :RangeEntity .
 
+:CertificateEntity a samm:Entity ;
+   samm:preferredName "Certificate Entity"@en ;
+   samm:description "Certificate Entity"@en ;
+   samm:properties ( :certificateId :certificateName ) .
+
 :RangeMassEntity a samm:Entity ;
    samm:preferredName "Range Mass Entity"@en ;
    samm:description "Entity containing a min and max value and a massBalanced flag"@en ;
    samm:properties ( :massBalanced :max :min ) .
+
+:certificateName a samm:Property ;
+   samm:preferredName "certificate name"@en ;
+   samm:description "name or title of a certificate, used to uniquely identify the certification type or standard"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "ISCC PLUS" .
 
 :min a samm:Property ;
    samm:preferredName "min"@en ;
@@ -64,4 +70,33 @@
    samm:preferredName "Range Entity"@en ;
    samm:description "Entity containing a min and max value"@en ;
    samm:properties ( :max :min ) .
+
+:PercentConstraint a samm-c:RangeConstraint ;
+   samm:preferredName "PercentConstraint"@en ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "100"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:FloatPercent a samm-c:Quantifiable ;
+   samm:preferredName "float percent"@en ;
+   samm:description "float percent"@en ;
+   samm:dataType xsd:float ;
+   samm-c:unit samm-u:percent .
+
+:max a samm:Property ;
+   samm:preferredName "max"@en ;
+   samm:description "Maximum value of the content"@en ;
+   samm:characteristic :PercentTrait ;
+   samm:exampleValue "35.6"^^xsd:float .
+
+:PercentTrait a samm-c:Trait ;
+   samm:preferredName "PercentTrait"@en ;
+   samm-c:baseCharacteristic :FloatPercent ;
+   samm-c:constraint :PercentConstraint .
+
+:CertificateSingleEntity a samm-c:SingleEntity ;
+   samm:preferredName "Certificate SingleEntity"@en ;
+   samm:description "information characterizing a certificate in IMDS"@en ;
+   samm:dataType :CertificateEntity .
 
