@@ -11,8 +11,8 @@
 @prefix ext-information: <urn:samm:io.catenax.shared.industry_core.regulatory_information:1.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
-:MaterialCompliance a samm:Aspect ;
-   samm:properties ( [ samm:property ext-information:reach; samm:optional true ] [ samm:property ext-information:biocidal; samm:optional true ] [ samm:property ext-information:mccp; samm:optional true ] ) ;
+:MaterialRegulatoryInformation a samm:Aspect ;
+   samm:properties ( [ samm:property ext-information:biocidal; samm:optional true ] [ samm:property ext-information:mccp; samm:optional true ] [ samm:property ext-information:reach; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
