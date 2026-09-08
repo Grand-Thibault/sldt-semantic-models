@@ -1,5 +1,3 @@
-
-
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
 @prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
@@ -54,7 +52,7 @@
 
 :inorganicOrFossilBasedContent a samm:Property ;
    samm:preferredName "inorganic Or Fossi lBased Content"@en ;
-   samm:description "Minimum value of the \ninorganic or fossil-based \ncontent \nMust add up to 100 percent \nto the max value of XML \nelement ìBioBasedContentî. \n\nMaximum value of the \ninorganic or fossil-based \ncontent \nMust add up to 100 percent \nto the min value of XML \nelement ìBioBasedContentî. "@en ;
+   samm:description "Minimum value of the \ninorganic or fossil-based \ncontent \nMust add up to 100 percent \nto the max value of XML \nelement ‚ÄúBioBasedContent‚Äù. \n\nMaximum value of the \ninorganic or fossil-based \ncontent \nMust add up to 100 percent \nto the min value of XML \nelement ‚ÄúBioBasedContent‚Äù. "@en ;
    samm:characteristic :RangeSingleEntity .
 
 :primaryInorganicOrFossilBasedContent a samm:Property ;
@@ -75,7 +73,7 @@
 :secondaryBioBasedMaterialContent a samm:Property ;
    samm:preferredName "secondary bio-based material content"@en ;
    samm:description "Minimum value of the secondary bio\nbased content. \nMust add up to 100 percent to the \nmax value of BioBasedPrimary. \n\nMaximum value of the secondary \nbio-based content. \nMust add up to 100 percent to the \nmin value of BioBasedPrimary. "@en ;
-   samm:characteristic :RangeSingleEntity .
+   samm:characteristic :RangeMassSingleEntity .
 
 :biobasedContent a samm:Property ;
    samm:preferredName "bio based content"@en ;
@@ -85,7 +83,7 @@
 :bioBasedCertificate a samm:Property ;
    samm:preferredName "Bio Based Certificate"@en ;
    samm:description "ID of the bio-based content \ncertificate."@en ;
-   samm:characteristic :ThreeDigitIdTrait .
+   samm:characteristic :CertificateSingleEntity .
 
 :ContainsRecyclateEnum a samm-c:Enumeration ;
    samm:preferredName "Contains Recyclate Enum"@en ;
@@ -96,18 +94,9 @@
    samm:preferredName "Inorganic Or Fossil Based Recyclate SingleEntity"@en ;
    samm:dataType :InorganicOrFossilBasedRecyclateEntity .
 
-:ThreeDigitIdTrait a samm-c:Trait ;
-   samm:preferredName "Three Digit Id Trait"@en ;
-   samm-c:baseCharacteristic samm-c:Text ;
-   samm-c:constraint :ThreeDigitsRegex .
-
 :InorganicOrFossilBasedRecyclateEntity a samm:Entity ;
    samm:preferredName "Inorganic Or Fossil Based Recyclate SingleEntity"@en ;
    samm:properties ( :mechanicalRecyclate :chemicalRecyclate ) .
-
-:ThreeDigitsRegex a samm-c:RegularExpressionConstraint ;
-   samm:preferredName "three digits regex"@en ;
-   samm:value "^\\d{3}$" .
 
 :mechanicalRecyclate a samm:Property ;
    samm:preferredName "Mechanical Recyclate"@en ;
@@ -172,6 +161,5 @@
 :chemicalRecyclingCertificationId a samm:Property ;
    samm:preferredName "ID of the chemical recycling certification"@en ;
    samm:description "specifies the identifier of a certification that verifies the use or origin of chemically recycled materials within the product or material"@en ;
-   samm:characteristic :ThreeDigitIdTrait ;
-   samm:exampleValue "123" .
+   samm:characteristic :CertificateSingleEntity .
 
